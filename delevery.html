@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Order</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #2C3E50, #4CA1AF);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .form-section, .menu-section, .checkout-section, .order-placed-section {
+      display: none;
+    }
+    .form-section.active, .menu-section.active, .checkout-section.active, .order-placed-section.active {
+      display: block;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      background-color: #FF6347;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #CD5C5C;
+    }
+    .menu-category {
+      margin-bottom: 20px;
+    }
+    .menu-category h3 {
+      text-decoration: underline;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+    }
+    .menu-item {
+      background: white;
+      color: black;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .menu-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .menu-item img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+    .summary, .order-details {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .note {
+      margin-top: 20px;
+      color: #FFD700;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>Just Order</header>
+
+  <!-- User Details Section -->
+  <div class="container form-section active" id="form-section">
+    <h2>Welcome to Just Order</h2>
+    <centre><h4>Order anything from Mingos at your desk</h4></centre>
+    <form id="user-form">
+      <label for="usn">Enter your USN:</label>
+      <input type="text" id="usn" required>
+      <label for="name">Enter your Name:</label>
+      <input type="text" id="name" required>
+      <label for="block">Select your Block:</label>
+      <select id="block" required>
+        <option value="">Select Block</option>
+        <option value="Admin Block">RVU Admin Block</option>
+        <option value="A Block">RVU A Block</option>
+        <option value="B Block">RVU B Block</option>
+        <option value="C Block">RVU C Block</option>
+      </select>
+      <label for="room">Enter your Room Number:</label>
+      <input type="text" id="room" required>
+      <button type="submit">Continue</button>
+    </form>
+  </div>
+
+  <!-- Menu Section -->
+  <div class="container menu-section" id="menu-section">
+    <h2>Menu</h2>
+    <div class="menu-category">
+      <h3>Beverages</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="cofee.jpg" alt="Coffee">
+          <h4>Coffee</h4>
+          <p>₹40</p>
+          <input type="number" min="0" placeholder="Qty" data-price="40">
+        </div>
+        <div class="menu-item">
+          <img src="tea.webp" alt="Tea">
+          <h4>Tea</h4>
+          <p>₹20</p>
+          <input type="number" min="0" placeholder="Qty" data-price="20">
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3>Snacks</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="sandwich.cms" alt="Sandwich">
+          <h4>Sandwich</h4>
+          <p>₹50</p>
+          <input type="number" min="0" placeholder="Qty" data-price="50">
+        </div>
+        <div class="menu-item">
+          <img src="burger.avif" alt="Burger">
+          <h4>Burger</h4>
+          <p>₹80</p>
+          <input type="number" min="0" placeholder="Qty" data-price="80">
+        </div>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3>Desserts</h3>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="ice cream.jpg" alt="Ice Cream">
+          <h4>Ice Cream</h4>
+          <p>₹60</p>
+          <input type="number" min="0" placeholder="Qty" data-price="60">
+        </div>
+        <div class="menu-item">
+          <img src="cake.avif" alt="Cake">
+          <h4>Cake</h4>
+          <p>₹70</p>
+          <input type="number" min="0" placeholder="Qty" data-price="70">
+        </div>
+      </div>
+    </div>
+    <button id="checkout-btn">Proceed to Checkout</button>
+    <p>more items to be avalible soon</p>
+  </div>
+
+  <!-- Checkout Section -->
+  <div class="container checkout-section" id="checkout-section">
+    <h2>Order Summary</h2>
+    <div id="order-summary">
+    <p>delivery only avalible for students of RVU</p>
+      <!-- Populated dynamically -->
+    </div>
+    <div class="summary">
+      <p>Total Price: ₹<span id="total-price">0</span></p>
+    </div>
+    <button id="confirm-btn">Confirm Order</button>
+  </div>
+
+  <!-- Order Placed Section -->
+  <div class="container order-placed-section" id="order-placed-section">
+    <h2>Order Placed Sucesfully!</h2>
+    <h4>Thankyou</h4>
+    <div class="order-details">
+      <p>Delivery Person name: <span id="delivery-person"></span></p>
+      <p>Estimated preparation and Delivery Time: <span id="delivery-time"></span> minutes</p>
+    </div>
+    <p class="note">We accept cash only. Online payment will be introduced soon.</p>
+  </div>
+
+  <script>
+    const userForm = document.getElementById("user-form");
+    const formSection = document.getElementById("form-section");
+    const menuSection = document.getElementById("menu-section");
+    const checkoutSection = document.getElementById("checkout-section");
+    const orderPlacedSection = document.getElementById("order-placed-section");
+
+    const menuItems = document.querySelectorAll(".menu-item input");
+    const orderSummary = document.getElementById("order-summary");
+    const totalPriceElem = document.getElementById("total-price");
+
+    const deliveryPersonElem = document.getElementById("delivery-person");
+    const deliveryTimeElem = document.getElementById("delivery-time");
+
+    const deliveryPersons = ["Rakesh", "Ruthick", "Abishek", "Prudhvi"];
+
+    userForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      formSection.classList.remove("active");
+      menuSection.classList.add("active");
+    });
+
+    document.getElementById("checkout-btn").addEventListener("click", () => {
+      menuSection.classList.remove("active");
+      checkoutSection.classList.add("active");
+
+      // Populate order summary
+      let total = 0;
+      orderSummary.innerHTML = "";
+      menuItems.forEach((item) => {
+        const qty = parseInt(item.value) || 0;
+        if (qty > 0) {
+          const name = item.closest(".menu-item").querySelector("h4").textContent;
+          const price = parseInt(item.dataset.price);
+          total += price * qty;
+          orderSummary.innerHTML += `<p>${name} (₹${price}) x ${qty} = ₹${price * qty}</p>`;
+        }
+      });
+      totalPriceElem.textContent = total;
+    });
+
+    document.getElementById("confirm-btn").addEventListener("click", () => {
+      checkoutSection.classList.remove("active");
+      orderPlacedSection.classList.add("active");
+
+      // Randomly assign delivery person and delivery time
+      const randomPerson = deliveryPersons[Math.floor(Math.random() * deliveryPersons.length)];
+      const randomTime = Math.floor(Math.random() * 15) + 1;  // between 15 and 45 minutes
+
+      deliveryPersonElem.textContent = randomPerson;
+      deliveryTimeElem.textContent = randomTime;
+    });
+  </script>
+</body>
+</html>
